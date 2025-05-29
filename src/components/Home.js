@@ -8,12 +8,6 @@ const Home = ({ onNavigate, isOnline }) => {
         <h1 className="app-title">🌭 SausageWraps</h1>
         <p className="app-subtitle">Capture & Rate Cycling Outfits</p>
         
-        {/* Online Status Indicator */}
-        <div className={`status-indicator ${isOnline ? 'online' : 'offline'}`}>
-          <span className="status-dot"></span>
-          {isOnline ? '🌐 Multi-player Mode' : '📱 Offline Mode'}
-        </div>
-        
         <div className="button-container">
           <button 
             className="main-button add-cyclist-btn"
