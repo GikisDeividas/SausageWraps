@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SausageWraps.css';
 
-const SausageWraps = ({ onBack, cyclists, onUpvote, userVotes, onClearAllData }) => {
+const SausageWraps = ({ onBack, cyclists, onUpvote, userVotes, onClearAllData, isOnline }) => {
   const [toast, setToast] = useState(null);
 
   // Array of random funny phrases for voting
@@ -77,6 +77,12 @@ const SausageWraps = ({ onBack, cyclists, onUpvote, userVotes, onClearAllData })
         
         <h2>🏆 SausageWraps Leaderboard</h2>
         
+        {/* Online Status Indicator */}
+        <div className={`status-indicator ${isOnline ? 'online' : 'offline'}`}>
+          <span className="status-dot"></span>
+          {isOnline ? '🌐 Live Multi-player' : '📱 Offline Mode'}
+        </div>
+        
         <div className="vote-status">
           <p>Votes remaining: {2 - userVotes.count}/2</p>
           {userVotes.count >= 2 && (
@@ -88,6 +94,11 @@ const SausageWraps = ({ onBack, cyclists, onUpvote, userVotes, onClearAllData })
           <div className="empty-state">
             <p>No cyclists added yet!</p>
             <p>Use AddCyclist to get started.</p>
+            {!isOnline && (
+              <p style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '10px' }}>
+                📱 Running in offline mode
+              </p>
+            )}
           </div>
         ) : (
           <>

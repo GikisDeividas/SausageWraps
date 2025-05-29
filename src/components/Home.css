@@ -31,8 +31,64 @@
 .app-subtitle {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-weight: 300;
+}
+
+/* Status Indicator */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.status-indicator.online {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.4);
+  color: #a5d6a7;
+}
+
+.status-indicator.offline {
+  background: rgba(255, 152, 0, 0.2);
+  border: 1px solid rgba(255, 152, 0, 0.4);
+  color: #ffcc80;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online .status-dot {
+  background: #4caf50;
+}
+
+.status-indicator.offline .status-dot {
+  background: #ff9800;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .button-container {
@@ -92,9 +148,12 @@
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
+  .home-container {
+    padding: 15px;
+  }
+  
   .home-content {
     padding: 30px 20px;
-    margin: 10px;
   }
   
   .app-title {
@@ -103,7 +162,11 @@
   
   .app-subtitle {
     font-size: 1rem;
-    margin-bottom: 30px;
+  }
+  
+  .status-indicator {
+    font-size: 0.85rem;
+    padding: 8px 14px;
   }
   
   .main-button {
@@ -113,10 +176,6 @@
 }
 
 @media (max-width: 480px) {
-  .home-container {
-    padding: 15px;
-  }
-  
   .home-content {
     padding: 25px 15px;
   }
@@ -125,8 +184,13 @@
     font-size: 1.8rem;
   }
   
-  .button-container {
-    gap: 15px;
+  .app-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .status-indicator {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
   
   .main-button {
