@@ -1,39 +1,46 @@
 .add-cyclist-container {
   min-height: 100vh;
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3561 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .add-cyclist-content {
-  max-width: 500px;
+  max-width: 520px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 
+    0 8px 32px rgba(0, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .camera-content {
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(0, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 
+    0 8px 32px rgba(0, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 h2 {
-  color: white;
+  color: #00ffff;
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 1.8rem;
-  font-weight: 600;
+  margin-bottom: 32px;
+  font-size: 2rem;
+  font-weight: 300;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  letter-spacing: -0.01em;
 }
 
 /* Code form styles */
@@ -44,52 +51,57 @@ h2 {
 }
 
 .code-input {
-  padding: 15px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.1);
+  padding: 16px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
   color: white;
   font-size: 1.1rem;
   text-align: center;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 .code-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .code-input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(0, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
 }
 
 .submit-button {
-  background: linear-gradient(45deg, #4ecdc4, #44a08d);
-  border: none;
+  background: linear-gradient(135deg, #20b2aa 0%, #008b8b 100%);
+  border: 1px solid rgba(32, 178, 170, 0.3);
   color: white;
-  padding: 15px 30px;
-  border-radius: 50px;
+  padding: 16px 32px;
+  border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(32, 178, 170, 0.2);
 }
 
 .submit-button:hover {
-  background: linear-gradient(45deg, #26d0ce, #2e8b57);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+  background: linear-gradient(135deg, #48d1cc 0%, #20b2aa 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(32, 178, 170, 0.3);
 }
 
 /* Camera styles */
 .camera-container {
-  margin: 20px 0;
-  border-radius: 15px;
+  margin: 24px 0;
+  border-radius: 8px;
   overflow: hidden;
   background: #000;
   position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .camera-video {
@@ -101,28 +113,29 @@ h2 {
 }
 
 .capture-button {
-  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-  border: none;
-  color: white;
-  padding: 15px 30px;
-  border-radius: 50px;
+  background: linear-gradient(135deg, #00ffff 0%, #0080ff 100%);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  color: #0a0e27;
+  padding: 16px 32px;
+  border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 24px;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
 }
 
 .capture-button:hover {
-  background: linear-gradient(45deg, #ff5252, #e55100);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background: linear-gradient(135deg, #33ffff 0%, #3399ff 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(0, 255, 255, 0.3);
 }
 
 /* Name form styles */
 .captured-image-container {
-  margin: 20px 0;
+  margin: 24px 0;
   text-align: center;
 }
 
@@ -130,10 +143,11 @@ h2 {
   max-width: 100%;
   height: auto;
   max-height: 320px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
   aspect-ratio: 4/3;
   object-fit: cover;
+  border: 1px solid rgba(0, 255, 255, 0.1);
 }
 
 .name-form {
@@ -143,85 +157,118 @@ h2 {
 }
 
 .name-input {
-  padding: 15px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.1);
+  padding: 16px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
   color: white;
   font-size: 1.1rem;
   text-align: center;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
 }
 
 .name-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .name-input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(0, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
 }
 
 .button-group {
   display: flex;
-  gap: 15px;
+  gap: 16px;
   flex-direction: column;
 }
 
 .retake-button {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  padding: 12px 24px;
-  border-radius: 50px;
+  padding: 14px 28px;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 .retake-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
 }
 
 .save-button {
-  background: linear-gradient(45deg, #4ecdc4, #44a08d);
-  border: none;
+  background: linear-gradient(135deg, #20b2aa 0%, #008b8b 100%);
+  border: 1px solid rgba(32, 178, 170, 0.3);
   color: white;
-  padding: 15px 30px;
-  border-radius: 50px;
+  padding: 16px 32px;
+  border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(32, 178, 170, 0.2);
 }
 
 .save-button:hover {
-  background: linear-gradient(45deg, #26d0ce, #2e8b57);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+  background: linear-gradient(135deg, #48d1cc 0%, #20b2aa 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(32, 178, 170, 0.3);
+}
+
+/* Back button */
+.back-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: translateY(-1px);
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .add-cyclist-container {
-    padding: 15px;
+    padding: 16px;
   }
   
   .add-cyclist-content,
   .camera-content {
-    padding: 20px;
-    margin: 10px;
+    padding: 24px;
+    margin: 12px;
   }
   
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    font-size: 1.75rem;
+    margin-bottom: 24px;
   }
   
   .camera-video {
@@ -229,40 +276,47 @@ h2 {
   }
   
   .captured-image {
-    max-height: 280px;
+    max-height: 240px;
+  }
+
+  .back-button {
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 480px) {
   .add-cyclist-container {
-    padding: 10px;
+    padding: 12px;
   }
   
   .add-cyclist-content,
   .camera-content {
-    padding: 15px;
+    padding: 20px;
   }
   
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   
   .code-input,
   .name-input {
-    padding: 12px 16px;
     font-size: 1rem;
+    padding: 14px 20px;
   }
   
   .submit-button,
   .capture-button,
   .save-button {
-    padding: 12px 24px;
     font-size: 1rem;
+    padding: 14px 24px;
   }
   
   .retake-button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    padding: 12px 20px;
   }
   
   .button-group {
@@ -270,6 +324,6 @@ h2 {
   }
   
   .captured-image {
-    max-height: 240px;
+    max-height: 200px;
   }
 } 

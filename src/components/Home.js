@@ -22,6 +22,13 @@ const Home = ({ onNavigate, isOnline }) => {
           >
             🏆 SausageWraps
           </button>
+          
+          <button 
+            className="main-button truth-lie-btn"
+            onClick={() => onNavigate('truthLie')}
+          >
+            🎭 Truth-Lie
+          </button>
         </div>
       </div>
     </div>

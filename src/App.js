@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import Home from './components/Home';
 import AddCyclist from './components/AddCyclist';
 import SausageWraps from './components/SausageWraps';
+import TruthLie from './components/TruthLie';
 import { cyclistsAPI, userVotesAPI } from './supabaseClient';
 
 function App() {
@@ -12,50 +13,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isOnline, setIsOnline] = useState(true);
 
-  // Load data on app start
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  // Set up real-time subscription
-  useEffect(() => {
-    let subscription;
-    
-    if (isOnline) {
-      subscription = cyclistsAPI.subscribeToChanges((payload) => {
-        console.log('Real-time update:', payload);
-        // Refresh data when changes occur
-        loadCyclists();
-      });
-    }
-
-    return () => {
-      if (subscription) {
-        subscription.unsubscribe();
-      }
-    };
-  }, [isOnline]);
-
-  const loadData = async () => {
-    try {
-      // Load cyclists from Supabase
-      await loadCyclists();
-      
-      // Load user votes from localStorage
-      const votes = userVotesAPI.get();
-      setUserVotes(votes);
-      
-      setIsOnline(true);
-    } catch (error) {
-      console.error('Failed to load from Supabase, using localStorage:', error);
-      // Fallback to localStorage if Supabase fails
-      loadFromLocalStorage();
-      setIsOnline(false);
-    }
-    setIsLoaded(true);
-  };
-
-  const loadCyclists = async () => {
+  const loadCyclists = useCallback(async () => {
     try {
       const data = await cyclistsAPI.getAll();
       setCyclists(data);
@@ -64,9 +22,9 @@ function App() {
       console.error('Error loading cyclists:', error);
       throw error;
     }
-  };
+  }, []);
 
-  const loadFromLocalStorage = () => {
+  const loadFromLocalStorage = useCallback(() => {
     try {
       const savedCyclists = localStorage.getItem('sausageWraps_cyclists');
       const savedVotes = localStorage.getItem('sausageWraps_userVotes');
@@ -87,7 +45,50 @@ function App() {
       setCyclists([]);
       setUserVotes({ count: 0, votedImages: [] });
     }
-  };
+  }, []);
+
+  const loadData = useCallback(async () => {
+    try {
+      // Load cyclists from Supabase
+      await loadCyclists();
+      
+      // Load user votes from localStorage
+      const votes = userVotesAPI.get();
+      setUserVotes(votes);
+      
+      setIsOnline(true);
+    } catch (error) {
+      console.error('Failed to load from Supabase, using localStorage:', error);
+      // Fallback to localStorage if Supabase fails
+      loadFromLocalStorage();
+      setIsOnline(false);
+    }
+    setIsLoaded(true);
+  }, [loadCyclists, loadFromLocalStorage]);
+
+  // Load data on app start
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  // Set up real-time subscription
+  useEffect(() => {
+    let subscription;
+    
+    if (isOnline) {
+      subscription = cyclistsAPI.subscribeToChanges((payload) => {
+        console.log('Real-time update:', payload);
+        // Refresh data when changes occur
+        loadCyclists();
+      });
+    }
+
+    return () => {
+      if (subscription) {
+        subscription.unsubscribe();
+      }
+    };
+  }, [isOnline, loadCyclists]);
 
   const addCyclist = async (name, imageData) => {
     const newCyclist = {
@@ -219,6 +220,12 @@ function App() {
             userVotes={userVotes}
             onClearAllData={clearAllData}
             isOnline={isOnline}
+          />
+        );
+      case 'truthLie':
+        return (
+          <TruthLie 
+            onBack={() => setCurrentView('home')}
           />
         );
       default:
