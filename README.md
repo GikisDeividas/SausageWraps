@@ -1,70 +1,158 @@
-# Getting Started with Create React App
+# 🌭 SausageWraps
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A mobile-first web app for capturing and rating cycling outfits among friends. Take photos of cyclists, give them names, and vote on the best "sausage wraps" (cycling outfits)!
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### 📱 Mobile-First Design
+- Responsive, modern UI optimized for mobile devices
+- Clean, minimalist glassmorphism design
+- Touch-friendly interface
 
-### `npm start`
+### 📸 AddCyclist
+- **Code-gated access**: Enter code `135` to access camera
+- **Camera integration**: Take photos using device camera
+- **Name assignment**: Give each cyclist photo a custom name
+- **Local storage**: Photos saved in browser storage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 🏆 SausageWraps Leaderboard
+- **Photo gallery**: View all cyclist photos in a responsive grid
+- **Voting system**: Upvote your favorite cycling outfits
+- **IP-based limits**: Each user gets 2 total votes, 1 per image
+- **Real-time ranking**: Photos automatically sorted by vote count
+- **Vote tracking**: See remaining votes and voting status
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Setup & Installation
 
-### `npm test`
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
+1. Navigate to the project directory:
+   ```bash
+   cd sausage-wraps
+   ```
 
-### `npm run build`
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Open your browser and go to `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### For Mobile Testing
+- Use your browser's device emulation tools
+- Or access the local server from your mobile device on the same network
 
-### `npm run eject`
+## 📱 Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Getting Started
+1. **Home Page**: Choose between "AddCyclist" or "SausageWraps"
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Adding a Cyclist
+1. Click "📸 AddCyclist"
+2. Enter the access code: `135`
+3. Allow camera permissions when prompted
+4. Take a photo of the cyclist
+5. Enter a name for the cyclist
+6. Save the photo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Viewing & Voting
+1. Click "🏆 SausageWraps" to view the leaderboard
+2. Browse cyclist photos sorted by votes
+3. Click "👍 Upvote" to vote for your favorites
+4. Each user gets 2 total votes, 1 per image
+5. Vote counts update in real-time
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🔧 Technical Details
 
-## Learn More
+### Built With
+- **React 19.1.0**: Modern React with hooks
+- **CSS3**: Custom styling with glassmorphism effects
+- **HTML5 Camera API**: For photo capture
+- **LocalStorage**: For data persistence
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Key Features
+- **Mobile-optimized**: Responsive design with mobile-first approach
+- **Camera integration**: Uses `getUserMedia` API for photo capture
+- **Vote limiting**: IP-based voting restrictions (simulated with localStorage)
+- **Real-time updates**: Instant UI updates for votes and rankings
+- **Glassmorphism UI**: Modern, translucent design elements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Browser Compatibility
+- Chrome (recommended for camera features)
+- Safari (iOS/macOS)
+- Firefox
+- Edge
 
-### Code Splitting
+**Note**: Camera functionality requires HTTPS in production or localhost for development.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🎯 App Flow
 
-### Analyzing the Bundle Size
+```
+Home Page
+├── AddCyclist
+│   ├── Code Entry (135)
+│   ├── Camera Access
+│   ├── Photo Capture
+│   └── Name Input
+└── SausageWraps
+    ├── Vote Status Display
+    ├── Photo Grid (sorted by votes)
+    ├── Upvote Buttons
+    └── Vote Tracking
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔒 Security Features
 
-### Making a Progressive Web App
+- **Code-gated camera access**: Prevents unauthorized photo taking
+- **Vote limitations**: Prevents spam voting
+- **Local data storage**: No server-side data collection
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🚀 Deployment
 
-### Advanced Configuration
+### Build for Production
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Deploy
+The app can be deployed to any static hosting service:
+- Netlify
+- Vercel
+- GitHub Pages
+- Firebase Hosting
 
-### Deployment
+**Important**: For camera functionality in production, ensure HTTPS is enabled.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🎨 Customization
 
-### `npm run build` fails to minify
+### Changing the Access Code
+Edit the code check in `src/components/AddCyclist.js`:
+```javascript
+if (code === '135') { // Change '135' to your desired code
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Modifying Vote Limits
+Edit the vote limit in `src/App.js`:
+```javascript
+if (userVotes.count >= 2) { // Change 2 to your desired limit
+```
+
+## 🤝 Contributing
+
+This is a fun project for friends! Feel free to fork and customize for your own cycling group.
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+---
+
+**Have fun rating those sausage wraps! 🚴‍♂️🌭**

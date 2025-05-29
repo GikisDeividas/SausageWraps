@@ -1,0 +1,136 @@
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.home-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.main-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.main-button:active {
+  transform: translateY(0);
+}
+
+.add-cyclist-btn {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  border: none;
+}
+
+.add-cyclist-btn:hover {
+  background: linear-gradient(45deg, #ff5252, #e55100);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.sausage-wraps-btn {
+  background: linear-gradient(45deg, #4ecdc4, #44a08d);
+  border: none;
+}
+
+.sausage-wraps-btn:hover {
+  background: linear-gradient(45deg, #26d0ce, #2e8b57);
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .home-content {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+  
+  .main-button {
+    padding: 14px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 15px;
+  }
+  
+  .home-content {
+    padding: 25px 15px;
+  }
+  
+  .app-title {
+    font-size: 1.8rem;
+  }
+  
+  .button-container {
+    gap: 15px;
+  }
+  
+  .main-button {
+    padding: 12px 18px;
+    font-size: 0.95rem;
+  }
+} 
