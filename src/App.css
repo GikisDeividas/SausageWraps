@@ -11,10 +11,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3561 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
-  color: #ffffff;
-  letter-spacing: 0.01em;
+  color: #333;
 }
 
 .App {
@@ -25,90 +24,43 @@ body {
 
 /* Common button styles */
 .back-button {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 20px;
   font-size: 14px;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   margin-bottom: 20px;
   align-self: flex-start;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0.01em;
 }
 
 .back-button:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
 }
 
 /* Loading and error states */
 .loading {
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: white;
   font-size: 16px;
-  font-weight: 400;
   margin: 20px 0;
-  letter-spacing: 0.01em;
 }
 
 .error-message {
-  background: rgba(255, 107, 107, 0.1);
-  border: 1px solid rgba(255, 107, 107, 0.3);
-  color: #ff6b6b;
-  padding: 16px;
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: #ff4444;
+  padding: 12px;
   border-radius: 8px;
-  margin: 12px 0;
+  margin: 10px 0;
   text-align: center;
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.1);
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 255, 255, 0.3);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 255, 255, 0.5);
-}
-
-/* Selection styling */
-::selection {
-  background: rgba(0, 255, 255, 0.3);
-  color: white;
-}
-
-::-moz-selection {
-  background: rgba(0, 255, 255, 0.3);
-  color: white;
-}
-
-/* Focus outline styling */
-*:focus {
-  outline: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 /* Responsive design */
@@ -116,21 +68,11 @@ body {
   body {
     font-size: 16px;
   }
-  
-  .back-button {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
 }
 
 @media (max-width: 480px) {
   .back-button {
-    padding: 6px 10px;
+    padding: 6px 12px;
     font-size: 12px;
-  }
-  
-  .error-message {
-    padding: 12px;
-    font-size: 14px;
   }
 }

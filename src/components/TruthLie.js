@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './TruthLie.css';
+import { truthsAPI } from '../supabaseClient';
 
 // Predefined truths for specific users (moved outside component to avoid useEffect dependency)
 const predefinedTruths = {
@@ -26,6 +27,7 @@ const TruthLie = ({ onBack }) => {
   const [showResult, setShowResult] = useState(false);
   const [usedLies, setUsedLies] = useState([]);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Predefined users
   const users = ['Tomas', 'Teo', 'Linas', 'Deivydas', 'Gerrit'];
@@ -48,8 +50,43 @@ const TruthLie = ({ onBack }) => {
     "I used to check my grandma's teeth while she slept — multiple times."
   ];
 
-  // Load saved data from localStorage
+  // Load saved data from database
   useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      setIsLoading(true);
+      
+      // Load user truths from database
+      const dbUserTruths = await truthsAPI.getUserTruths();
+      
+      // If no data in database, initialize with predefined truths
+      if (Object.keys(dbUserTruths).length === 0) {
+        // Save predefined truths to database
+        for (const [username, truths] of Object.entries(predefinedTruths)) {
+          await truthsAPI.saveUserTruths(username, truths);
+        }
+        setUserTruths(predefinedTruths);
+      } else {
+        setUserTruths(dbUserTruths);
+      }
+      
+      // Load used lies from database
+      const dbUsedLies = await truthsAPI.getUsedLies();
+      setUsedLies(dbUsedLies);
+      
+    } catch (error) {
+      console.error('Failed to load from database, using localStorage fallback:', error);
+      // Fallback to localStorage
+      loadFromLocalStorage();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const loadFromLocalStorage = () => {
     const savedTruths = localStorage.getItem('truthLie_userTruths');
     const savedUsedLies = localStorage.getItem('truthLie_usedLies');
     
@@ -57,7 +94,6 @@ const TruthLie = ({ onBack }) => {
       const parsed = JSON.parse(savedTruths);
       setUserTruths(parsed);
     } else {
-      // Initialize with predefined truths
       setUserTruths(predefinedTruths);
       localStorage.setItem('truthLie_userTruths', JSON.stringify(predefinedTruths));
     }
@@ -66,7 +102,7 @@ const TruthLie = ({ onBack }) => {
       const parsedUsedLies = JSON.parse(savedUsedLies);
       setUsedLies(parsedUsedLies);
     }
-  }, []);
+  };
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -92,17 +128,25 @@ const TruthLie = ({ onBack }) => {
     e.target.reset();
   };
 
-  const handleResetGame = () => {
+  const handleResetGame = async () => {
     if (window.confirm('Are you sure you want to reset the entire Truth & Lie game? This will clear all used lies and allow them to be used again.')) {
-      // Clear used lies
-      setUsedLies([]);
-      localStorage.removeItem('truthLie_usedLies');
-      
-      // Reset game state
-      setGameResult(null);
-      setShowResult(false);
-      
-      alert('Game has been reset! All lies can now be used again.');
+      try {
+        // Clear used lies from database
+        await truthsAPI.clearUsedLies();
+        setUsedLies([]);
+        
+        // Clear localStorage backup
+        localStorage.removeItem('truthLie_usedLies');
+        
+        // Reset game state
+        setGameResult(null);
+        setShowResult(false);
+        
+        alert('Game has been reset! All lies can now be used again.');
+      } catch (error) {
+        console.error('Error resetting game:', error);
+        alert('Error resetting game. Please try again.');
+      }
     }
   };
 
@@ -129,24 +173,34 @@ const TruthLie = ({ onBack }) => {
     setCurrentTruths(newTruths);
   };
 
-  const handleSaveAndAdd = () => {
+  const handleSaveAndAdd = async () => {
     if (currentTruths[0].trim() === '' || currentTruths[1].trim() === '') {
       alert('Please enter both truths!');
       return;
     }
 
-    const updatedUserTruths = {
-      ...userTruths,
-      [selectedUser]: [...currentTruths]
-    };
-    
-    setUserTruths(updatedUserTruths);
-    localStorage.setItem('truthLie_userTruths', JSON.stringify(updatedUserTruths));
-    
-    alert('Truths saved successfully!');
+    try {
+      // Save to database
+      await truthsAPI.saveUserTruths(selectedUser, currentTruths);
+      
+      // Update local state
+      const updatedUserTruths = {
+        ...userTruths,
+        [selectedUser]: [...currentTruths]
+      };
+      setUserTruths(updatedUserTruths);
+      
+      // Save to localStorage as backup
+      localStorage.setItem('truthLie_userTruths', JSON.stringify(updatedUserTruths));
+      
+      alert('Truths saved successfully!');
+    } catch (error) {
+      console.error('Error saving truths:', error);
+      alert('Error saving truths. Please try again.');
+    }
   };
 
-  const handleShuffle = () => {
+  const handleShuffle = async () => {
     const userSpecificTruths = userTruths[selectedUser] || [];
     
     // Filter out empty truths
@@ -182,9 +236,20 @@ const TruthLie = ({ onBack }) => {
     
     // If it's a lie, mark it as used
     if (isLie) {
-      const updatedUsedLies = [...usedLies, selectedStatement];
-      setUsedLies(updatedUsedLies);
-      localStorage.setItem('truthLie_usedLies', JSON.stringify(updatedUsedLies));
+      try {
+        // Save to database
+        await truthsAPI.addUsedLie(selectedStatement);
+        
+        // Update local state
+        const updatedUsedLies = [...usedLies, selectedStatement];
+        setUsedLies(updatedUsedLies);
+        
+        // Save to localStorage as backup
+        localStorage.setItem('truthLie_usedLies', JSON.stringify(updatedUsedLies));
+      } catch (error) {
+        console.error('Error saving used lie:', error);
+        // Continue with game even if database save fails
+      }
     }
     
     setGameResult({
@@ -205,6 +270,17 @@ const TruthLie = ({ onBack }) => {
   const getAvailableLiesCount = () => {
     return lieBank.filter(lie => !usedLies.includes(lie)).length;
   };
+
+  if (isLoading) {
+    return (
+      <div className="truth-lie-container">
+        <div className="truth-lie-content">
+          <h1 className="truth-lie-title">🎭 Truth & Lie</h1>
+          <p className="truth-lie-subtitle">Loading game data...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
